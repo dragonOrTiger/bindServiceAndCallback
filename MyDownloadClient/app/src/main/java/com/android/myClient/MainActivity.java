@@ -37,7 +37,10 @@ public class MainActivity extends Activity {
             }
 
         }
-
+        /*
+         *Called when a connection to the Service has been lost.
+         * This typically happens when the process hosting the service has crashed or been killed.
+         */
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Log.d(TAG, "onServiceDisconnected");

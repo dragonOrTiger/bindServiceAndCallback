@@ -2,6 +2,7 @@ package com.android.myservice;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
@@ -12,6 +13,18 @@ public class MyService extends Service {
     public MyService() {
     }
 
+    /*
+     *
+    private Handler mHandler =  new Handler();
+    private Runnable mTask = new Runnable() {
+        @Override
+        public void run() {
+            Log.d(TAG, 5 + "s after");
+            Integer.parseInt("ok");
+        }
+    };
+    */
+
     private IAidlCallback mCallback = null;
     private IAidlService.Stub mBinder = new IAidlService.Stub() {
         @Override
@@ -21,7 +34,7 @@ public class MyService extends Service {
 
         @Override
         public void download() throws RemoteException {
-            download();
+            doDownload();
         }
 
         @Override
@@ -33,6 +46,7 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.i(TAG, "onBind");
+        //mHandler.postDelayed(mTask, 5000);
         return mBinder;
     }
 
